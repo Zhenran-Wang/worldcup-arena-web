@@ -427,6 +427,7 @@
   /* --------------------------------------------------- model arena */
   var selMatch = 0;
   var dashSel = 0;
+  var dashPaged = true, dashPage = 0;   // 全部竞猜卡:翻页 / 全部列出
   function arenaResults() { var A = window.__WC_ARENA; return (A && A.RESULTS) || {}; }
   function arenaChamp() { var A = window.__WC_ARENA; return (A && A.CHAMPION) || ""; }
 
@@ -542,10 +543,26 @@
     var cardHost = el("wc-dash-card-body"); if (!cardHost) return;
     if (pickDay.type === "group") {
       var idxs = []; WC.FIX.forEach(function (f, i) { if (f[0] === pickDay.dk) idxs.push(i); });
-      cardHost.innerHTML = idxs.map(function (i) { return "<div class='wc-dash-pickcard'>" + pickCardHTML(A, en, i, arenaResults()) + "</div>"; }).join("");
+      renderDashCards(A, en, idxs);
     } else {
       cardHost.innerHTML = "<div class='wc-dtoday-empty'>" + (en ? "Knockout pairings are bracket slots — per-match cards open once teams are set." : "淘汰赛为占位对阵，球队确定后再开放单场卡。") + "</div>";
     }
+  }
+
+  function renderDashCards(A, en, idxs) {
+    var host = el("wc-dash-card-body"); if (!host) return;
+    if (dashPage >= idxs.length) dashPage = 0;
+    var pager = (dashPaged && idxs.length > 1)
+      ? "<div class='wc-dc-pager'>" + idxs.map(function (i, p) { return "<button type='button' class='wc-dc-pg" + (p === dashPage ? " on" : "") + "' data-pg='" + p + "'>" + (p + 1) + "</button>"; }).join("") + "</div>"
+      : "<span class='wc-dc-cnt'>" + idxs.length + (en ? " matches" : " 场比赛") + "</span>";
+    var toggle = "<button type='button' class='wc-dc-toggle' data-act='toggle'>" + (dashPaged ? (en ? "Show all" : "全部列出") : (en ? "Paginate" : "翻页查看")) + "</button>";
+    var pick = dashPaged
+      ? "<div class='wc-dash-pickcard'>" + pickCardHTML(A, en, idxs[dashPage], arenaResults()) + "</div>"
+      : idxs.map(function (i) { return "<div class='wc-dash-pickcard'>" + pickCardHTML(A, en, i, arenaResults()) + "</div>"; }).join("");
+    host.innerHTML = "<div class='wc-dc-bar'>" + pager + toggle + "</div>" + pick;
+    host.querySelectorAll("[data-pg]").forEach(function (b) { b.addEventListener("click", function () { dashPage = +b.getAttribute("data-pg"); renderDashCards(A, en, idxs); }); });
+    var tg = host.querySelector("[data-act='toggle']");
+    if (tg) tg.addEventListener("click", function () { dashPaged = !dashPaged; dashPage = 0; renderDashCards(A, en, idxs); });
   }
 
   function renderArena() {

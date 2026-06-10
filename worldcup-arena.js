@@ -128,6 +128,6 @@
                GROUP_WINNERS { A:"Mexico", B:"...", ... }
        ====================================================================== */
     RESULTS: {"0": "2:0/1:0", "1": "1:0/0:0"},
-    CHAMPION: "", FINALISTS: [], SEMIS: [], WINNER_CONF: "", TOTAL_GOALS: null, GROUP_WINNERS: {}
+    CHAMPION: "", FINALISTS: ["France", "Spain"], SEMIS: ["France", "Spain", "Argentina", "Brazil"], WINNER_CONF: "", TOTAL_GOALS: null, GROUP_WINNERS: {}
   };
 })();

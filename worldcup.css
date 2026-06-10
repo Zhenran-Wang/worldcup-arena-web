@@ -692,7 +692,7 @@ body[data-lang="zh"] .wc-board .matchup { letter-spacing: 0.02em; }
 
 /* ===== 赛果列 / 赛果横条 / 待定（与预测对照，2026-06-11）===== */
 .wc-amc-tbl th.ac, .wc-gp-tbl th.ac { color:#ffd166; font-weight:700; }
-.wc-amc-tbl td.ac, .wc-gp-tbl td.ac { background:rgba(255,209,102,.06); box-shadow:inset -1px 0 0 rgba(255,209,102,.22); }
+.wc-amc-tbl td.ac, .wc-gp-tbl td.ac { box-shadow:inset -1px 0 0 rgba(255,209,102,.15); }
 
 /* 赛果横条（全局彩池上方的对照基准，不挤模型网格）*/
 .wc-pool-actual { display:flex; flex-wrap:wrap; align-items:center; gap:8px 20px; margin:12px 0 4px; padding:12px 16px;

@@ -691,8 +691,13 @@ body[data-lang="zh"] .wc-board .matchup { letter-spacing: 0.02em; }
 
 
 /* ===== 赛果列 / 赛果横条 / 待定（与预测对照，2026-06-11）===== */
-.wc-amc-tbl th.ac, .wc-gp-tbl th.ac { color:#ffd166; font-weight:700; }
-.wc-amc-tbl td.ac, .wc-gp-tbl td.ac { box-shadow:inset -1px 0 0 rgba(255,209,102,.15); }
+.wc-amc-tbl th.ac, .wc-gp-tbl th.ac { color:#ffd166; font-weight:700; box-shadow:inset 1px 0 0 rgba(255,209,102,.3), inset -1px 0 0 rgba(255,209,102,.3); }
+.wc-amc-tbl td.ac, .wc-gp-tbl td.ac { box-shadow:inset 1px 0 0 rgba(255,209,102,.3), inset -1px 0 0 rgba(255,209,102,.3); }
+
+/* 去掉可滚动块被聚焦时浏览器默认的蓝色轮廓(滚动容器不是按钮，无需轮廓) */
+.wc-dtoday, .wc-fixturelist, .wc-amlist, .wc-timeline, [class*="-scroll"], #wc-grouppool { outline: none; }
+.wc-dtoday:focus, .wc-fixturelist:focus, .wc-amlist:focus, .wc-timeline:focus,
+[class*="-scroll"]:focus, [class*="-scroll"]:focus-visible, #wc-grouppool:focus { outline: none; }
 
 /* 赛果横条（全局彩池上方的对照基准，不挤模型网格）*/
 .wc-pool-actual { display:flex; flex-wrap:wrap; align-items:center; gap:8px 20px; margin:12px 0 4px; padding:12px 16px;

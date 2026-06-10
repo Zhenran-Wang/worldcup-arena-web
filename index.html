@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LLM 预测世界杯 · 2026</title>
+  <meta name="description" content="2026 世界杯单场比赛 LLM 预测专题：跟着赛程预测，或自定义任意对决。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20260530-thead3" />
+  <link rel="stylesheet" href="worldcup.css?v=20260611s" />
+</head>
+<body class="layout-pill dark-theme" data-active-page="overview" data-lang="zh">
+
+  <!-- ============================== TOP PILL NAV ============================== -->
+  <header class="topnav-wrap" aria-label="Primary">
+    <nav class="topnav">
+      <a class="topnav-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span data-en="LLM × WC" data-zh="LLM 预测世界杯">LLM 预测世界杯</span>
+      </a>
+      <ul class="topnav-links">
+        <li><a class="sb-link active" href="#intro" data-en="Overview" data-zh="总览">总览</a></li>
+        <li><a class="sb-link" href="#schedule" data-en="Schedule" data-zh="赛程">赛程</a></li>
+        <li><a class="sb-link" href="#predict" data-en="Model Arena ★" data-zh="模型擂台 ★">模型擂台 ★</a></li>
+        <li><a class="sb-link" href="#method" data-en="Method" data-zh="方法">方法</a></li>
+        <li><a class="sb-link" href="#about" data-en="About" data-zh="关于">关于</a></li>
+      </ul>
+      <div class="topnav-aux">
+        <div class="lang-toggle topnav-lang" role="group" aria-label="Language">
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button>
+        </div>
+        <a class="topnav-icon" href="#predict" aria-label="预测">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2H6v2H2v4a4 4 0 0 0 4 4 6 6 0 0 0 5 3.91V19H8v3h8v-3h-3v-3.09A6 6 0 0 0 18 12a4 4 0 0 0 4-4V4h-4V2zM6 10a2 2 0 0 1-2-2V6h2v4zm14-2a2 2 0 0 1-2 2V6h2v2z"/></svg>
+        </a>
+        <a class="topnav-icon" id="nav-code" href="#" target="_blank" rel="noopener" aria-label="Code · GitHub" title="Code · GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <div class="main-col">
+      <main id="top">
+
+    <!-- ================================ HERO ============================== -->
+    <section class="page-section hero" data-page="overview" id="hero">
+      <div class="hero-video-bg" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+          <source src="videos/hero.mp4?v=20260529" type="video/mp4" />
+        </video>
+        <div class="hero-video-overlay"></div>
+      </div>
+      <script>
+        (function () {
+          var v = document.currentScript.previousElementSibling.querySelector('video.hero-video');
+          if (!v) return;
+          var go = function () { try { var p = v.play(); if (p && p.catch) p.catch(function(){}); } catch (e) {} };
+          go();
+          v.addEventListener('loadeddata', go, { once: true });
+          v.addEventListener('canplay', go, { once: true });
+          document.addEventListener('DOMContentLoaded', go, { once: true });
+          window.addEventListener('load', go, { once: true });
+          ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(function (ev) {
+            window.addEventListener(ev, go, { once: true, passive: true });
+          });
+        })();
+      </script>
+
+      <div class="wrap hero-content">
+        <span class="hero-kicker" data-en="USA · CANADA · MEXICO — JUN 11 / JUL 19" data-zh="美加墨 · 6月11日 — 7月19日">美加墨 · 6月11日 — 7月19日</span>
+        <h1>
+          <span class="hero-title-main" data-en="LLM PREDICTS THE WORLD CUP" data-zh="LLM 预测世界杯">LLM 预测世界杯</span>
+          <span class="hero-title-sub" data-en="2026 · the <em>LLM football lottery</em>" data-zh="2026 · 大模型的<em>足球六合彩</em>">2026 · 大模型的<em>足球六合彩</em></span>
+        </h1>
+        <p class="pitch" data-en="Six LLMs fill out a football lottery slip for every match — 1X2, handicap, over/under, both-teams-to-score, odd/even, half-time/full-time, correct score — plus an outright pool for the title, finalists and group winners. As results land, the leaderboard ranks who reads the game best." data-zh="六个大模型为每场比赛填一张足球竞猜单——胜平负、让球、大小球、双方进球、单双、半全场、正确比分——外加一个押冠军、晋级决赛和小组头名的优胜盘。赛果一出，排行榜立刻见分晓——谁最会看球，一目了然。">六个大模型为每场比赛填一张足球竞猜单——胜平负、让球、大小球、双方进球、单双、半全场、正确比分——外加一个押冠军、晋级决赛和小组头名的优胜盘。赛果一出，排行榜立刻见分晓——谁最会看球，一目了然。</p>
+
+        <div class="btnrow">
+          <a class="btn primary" href="#predict" data-en="Predict a match" data-zh="开始单场预测">开始单场预测</a>
+          <a class="btn" href="#schedule" data-en="View schedule" data-zh="查看赛程">查看赛程</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== OVERVIEW DASHBOARD ================ -->
+    <section class="wc-section wc-reveal" id="dash">
+      <div class="wc-wrap">
+        <div class="wc-dash">
+          <div class="wc-dash-card">
+            <div class="wc-dash-head"><span class="ttl" data-en="Model leaderboard" data-zh="模型积分榜">模型积分榜</span><a class="lk" href="#predict" data-en="Arena →" data-zh="进擂台 →">进擂台 →</a></div>
+            <div class="wc-dlb" id="wc-dash-lb"></div>
+          </div>
+          <div class="wc-dash-card">
+            <div class="wc-dash-head"><span class="ttl" id="wc-dash-today-ttl" data-en="Today" data-zh="今日赛程">今日赛程</span><a class="lk" href="#schedule" data-en="Full schedule →" data-zh="完整赛程 →">完整赛程 →</a></div>
+            <div class="wc-dtoday" id="wc-dash-today"></div>
+          </div>
+        </div>
+        <div class="wc-dash-card wc-dash-card-wide">
+          <div class="wc-dash-head"><span class="ttl" data-en="Next match day · pick cards" data-zh="下一比赛日 · 全部竞猜卡">下一比赛日 · 全部竞猜卡</span><a class="lk" href="#predict" data-en="All cards →" data-zh="全部竞猜卡 →">全部竞猜卡 →</a></div>
+          <div id="wc-dash-card-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== INTRO / ABSTRACT =================== -->
+    <section class="wc-section wc-reveal" id="intro">
+      <div class="wc-wrap">
+        <span class="wc-eyebrow" data-en="The Special" data-zh="专题简介">专题简介</span>
+        <h2 class="wc-h2" data-en="48 teams. <span class='hl'>104 matches.</span> Six models." data-zh="48 强 · <span class='hl'>104 场</span> · 六个模型同台开盘">48 强 · <span class="hl">104 场</span> · 六个模型同台开盘</h2>
+        <div class="wc-abstract">
+          <div>
+            <p data-en="The 23rd World Cup is the first hosted by three nations — the <strong>USA, Canada and Mexico</strong> — and the first with <strong>48 teams</strong>, running June 11 to July 19." data-zh="第 23 届世界杯首次由 <strong>美国、加拿大、墨西哥</strong> 三国联办，也是首届 <strong>48 队</strong> 参赛，6 月 11 日至 7 月 19 日进行。">第 23 届世界杯首次由 <strong>美国、加拿大、墨西哥</strong> 三国联办，也是首届 <strong>48 队</strong> 参赛，6 月 11 日至 7 月 19 日进行。</p>
+            <p data-en="This special turns the tournament into a model arena: six flagship LLMs fill out a football-lottery slip for every match — 1X2, handicap, over/under, both-teams-to-score, odd/even, half-time/full-time and the correct score." data-zh="本专题把整届赛事变成一座「模型擂台」：六个旗舰大模型给每场比赛填一张足球六合彩——胜平负、让球、大小球、双方进球、单双、半全场和正确比分。">本专题把整届赛事变成一座「模型擂台」：六个旗舰大模型给每场比赛填一张足球六合彩——胜平负、让球、大小球、双方进球、单双、半全场和正确比分。</p>
+            <p data-en="On top of single matches there's an outright pool — champion, finalists, semi-finalists, winning region, total goals and the twelve group winners. Picks are sealed before kickoff and settled by real results, with a live leaderboard ranking who reads the game best. All model-generated, just for fun." data-zh="单场之外还有一个全局彩池——夺冠、进决赛、四强、夺冠大洲、总进球，以及十二个小组头名。所有预测开球前封盘、按真实赛果结算，积分榜实时排出预判最准的模型。全部由模型生成，仅供娱乐。">单场之外还有一个全局彩池——夺冠、进决赛、四强、夺冠大洲、总进球，以及十二个小组头名。所有预测开球前封盘、按真实赛果结算，积分榜实时排出预判最准的模型。全部由模型生成，仅供娱乐。</p>
+          </div>
+          <figure class="wc-video">
+            <video class="abstract-video-el" controls playsinline preload="metadata" poster="figures/hero-poster.jpg">
+              <source src="videos/abstract-demo.mp4?v=20260530b" type="video/mp4" />
+            </video>
+          </figure>
+        </div>
+
+        <div class="wc-stats">
+          <div class="wc-stat"><div class="n">48</div><div class="l" data-en="Teams" data-zh="参赛球队">参赛球队</div></div>
+          <div class="wc-stat"><div class="n">104</div><div class="l" data-en="Matches" data-zh="总场次">总场次</div></div>
+          <div class="wc-stat"><div class="n">12</div><div class="l" data-en="Groups" data-zh="小组">小组</div></div>
+          <div class="wc-stat"><div class="n">16</div><div class="l" data-en="Host cities" data-zh="主办城市">主办城市</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== SCHEDULE / GROUPS ================= -->
+    <section class="wc-section wc-reveal" id="schedule">
+      <div class="wc-wrap">
+        <span class="wc-eyebrow" data-en="Schedule" data-zh="赛程安排">赛程安排</span>
+        <h2 class="wc-h2" data-en="Day-by-day <span class='hl'>fixtures</span>" data-zh="逐日<span class='hl'>赛程</span>">逐日<span class="hl">赛程</span></h2>
+
+        <div class="wc-timeline" id="wc-timeline"></div>
+        <div class="wc-phase-detail" id="wc-phase-detail"></div>
+
+        <div class="wc-groups-hd">
+          <span class="ttl" data-en="The 12 groups" data-zh="12 个小组">12 个小组</span>
+          <span class="lg" data-en="Real 2026 draw" data-zh="2026 真实抽签分组">2026 真实抽签分组</span>
+        </div>
+        <div class="wc-groups" id="wc-groups"></div>
+        <p class="wc-disclaim" data-en="Groups and dates are the real 2026 draw. Head to the Model Arena to see every match's picks." data-zh="分组与日期均为 2026 真实抽签。想看预测，移步「模型擂台」逐场查看。">分组与日期均为 2026 真实抽签。想看预测，移步「模型擂台」逐场查看。</p>
+      </div>
+    </section>
+
+    <!-- ============================== MODEL ARENA ====================== -->
+    <section class="wc-section wc-reveal" id="predict">
+      <div class="wc-wrap">
+        <span class="wc-eyebrow" data-en="Model Arena" data-zh="模型擂台">模型擂台</span>
+        <h2 class="wc-h2" data-en="Six models, <span class='hl'>one scoreboard</span>" data-zh="六个模型 <span class='hl'>同台竞技</span>">六个模型 <span class="hl">同台竞技</span></h2>
+        <p class="wc-lead" data-en="Six flagship LLMs fill a pick card for every fixture across seven markets, plus a pre-tournament outright pool. As real results land, every correct call scores — the leaderboard ranks who reads the game best." data-zh="六个旗舰大模型给每场比赛填一张竞猜卡、覆盖七个市场，另有一个开赛前的全局彩池。真实赛果揭晓后，押中即得分，积分榜排出谁的预判最准。">六个旗舰大模型给每场比赛填一张竞猜卡、覆盖七个市场，另有一个开赛前的全局彩池。真实赛果揭晓后，押中即得分，积分榜排出谁的预判最准。</p>
+
+        <div class="wc-lb" id="wc-lb"></div>
+
+        <div class="wc-pool" id="wc-pool"></div>
+
+        <div class="wc-arena-head">
+          <span class="ttl" data-en="Group winners pool" data-zh="小组头名彩池">小组头名彩池</span>
+          <span class="wc-arena-hint" data-en="Each model picks a winner for all 12 groups · +2 each" data-zh="每个模型为 12 个小组各押一支头名 · 每组 +2 分">每个模型为 12 个小组各押一支头名 · 每组 +2 分</span>
+        </div>
+        <div class="wc-grouppool-scroll"><div class="wc-grouppool" id="wc-grouppool"></div></div>
+
+        <div class="wc-arena-head" style="margin-top:38px;">
+          <span class="ttl" data-en="Matchday 1 · pick cards" data-zh="小组赛首轮 · 竞猜卡">小组赛首轮 · 竞猜卡</span>
+          <span class="wc-arena-hint" data-en="Pick a match to see all six models' cards" data-zh="选一场，查看六个模型的竞猜卡">选一场，查看六个模型的竞猜卡</span>
+        </div>
+        <div class="wc-arena2">
+          <div class="wc-amlist" id="wc-amlist"></div>
+          <div class="wc-amcard" id="wc-amcard"></div>
+        </div>
+        <p class="wc-disclaim" data-en="Each model gives a pick for all seven single-match markets, plus a pre-tournament outright pool and the twelve group winners. Real results are added as matches finish — everything settles and the leaderboard refreshes automatically. For entertainment only." data-zh="每个模型为单场 7 个市场各给出一个预测，另有开赛前的全局彩池与十二个小组头名。真实赛果随比赛结束陆续录入，自动结算、积分榜自动刷新。仅供娱乐。">每个模型为单场 7 个市场各给出一个预测，另有开赛前的全局彩池与十二个小组头名。真实赛果随比赛结束陆续录入，自动结算、积分榜自动刷新。仅供娱乐。</p>
+      </div>
+    </section>
+
+    <!-- ============================== METHOD ============================ -->
+    <section class="wc-section wc-reveal" id="method">
+      <div class="wc-wrap">
+        <span class="wc-eyebrow" data-en="Under the hood" data-zh="背后逻辑">背后逻辑</span>
+        <h2 class="wc-h2" data-en="How a call is made" data-zh="一条预测是怎么来的">一条预测是怎么来的</h2>
+        <p class="wc-lead" style="margin-bottom:32px;" data-en="Real fixtures and ratings set the scene; the model keeps up with the latest news and writes its call." data-zh="真实赛程与实力评级搭好背景，模型随时跟进最新信息，写出判断。">真实赛程与实力评级搭好背景，模型随时跟进最新信息，写出判断。</p>
+
+        <div class="wc-steps">
+          <div class="wc-step"><div class="step-hd"><span class="num">01</span><h4 data-en="Context" data-zh="背景档案">背景档案</h4></div><p data-en="Every team gets a deep dossier — squad, key players, form, injuries, World Cup history and market value — built from Wikipedia, Transfermarkt and Elo, and cross-checked across sources." data-zh="每支球队都有一份深度档案——阵容、核心球员、近期状态、伤停、世界杯历史与身价——取自维基百科、Transfermarkt 与 Elo，并跨源交叉核对。">每支球队都有一份深度档案——阵容、核心球员、近期状态、伤停、世界杯历史与身价——取自维基百科、Transfermarkt 与 Elo，并跨源交叉核对。</p></div>
+          <div class="wc-step"><div class="step-hd"><span class="num">02</span><h4 data-en="Latest news" data-zh="最新动态">最新动态</h4></div><p data-en="The brief stays current right up to kickoff — latest form, injuries and squad news folded in — and each model weighs it against its own football knowledge, not just what's on the page." data-zh="资料一直更新到开球前——最新状态、伤停与队内消息持续并入——每个模型还会结合自身的足球知识权衡，而不只看纸面信息。">资料一直更新到开球前——最新状态、伤停与队内消息持续并入——每个模型还会结合自身的足球知识权衡，而不只看纸面信息。</p></div>
+          <div class="wc-step"><div class="step-hd"><span class="num">03</span><h4 data-en="Model call" data-zh="模型作答">模型作答</h4></div><p data-en="Six flagship models — Claude, GPT, Gemini, Kimi, GLM, Seed — each reason at full strength: a short analysis first, then a structured pick, one type at a time, sealed before kickoff." data-zh="六个旗舰模型——Claude、GPT、Gemini、Kimi、GLM、Seed——各自全力推理：先给简短分析，再给结构化预测，一次一种类型，开球前封盘。">六个旗舰模型——Claude、GPT、Gemini、Kimi、GLM、Seed——各自全力推理：先给简短分析，再给结构化预测，一次一种类型，开球前封盘。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== ABOUT ============================= -->
+    <section class="wc-section wc-reveal" id="about">
+      <div class="wc-wrap">
+        <span class="wc-eyebrow" data-en="Fine print" data-zh="说明">说明</span>
+        <h2 class="wc-h2" data-en="About this special" data-zh="关于本专题">关于本专题</h2>
+        <ul class="wc-list">
+          <li data-en="<strong>A forecast, not a prophecy.</strong> Every call is model output — football's magic lives in the upset." data-zh="<strong>这是预测，不是预言。</strong> 每条判断都是模型输出，足球的魅力恰在于冷门。"><strong>这是预测，不是预言。</strong> 每条判断都是模型输出，足球的魅力恰在于冷门。</li>
+          <li data-en="<strong>Groups & fixtures are real;</strong> ratings and odds are illustrative and update as the tournament unfolds." data-zh="<strong>分组与赛程为真实数据；</strong> 实力评级与概率为示意，随赛事推进更新。"><strong>分组与赛程为真实数据；</strong> 实力评级与概率为示意，随赛事推进更新。</li>
+          <li data-en="<strong>Not betting advice.</strong> For data display and fun only — watch responsibly." data-zh="<strong>不构成投注建议。</strong> 仅用于数据展示与娱乐，请理性看球。"><strong>不构成投注建议。</strong> 仅用于数据展示与娱乐，请理性看球。</li>
+        </ul>
+
+        <div class="wc-foot">
+          <span class="tag" data-en="World Cup 2026 · Prediction Desk" data-zh="世界杯 2026 · 预测专题">世界杯 2026 · 预测专题</span>
+          <a class="top" href="#top" data-en="▴ Back to top" data-zh="▴ 回到顶部">▴ 回到顶部</a>
+        </div>
+      </div>
+    </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="worldcup-app.js?v=20260611g"></script>
+  <script src="worldcup-knockout.js?v=20260610r"></script>
+  <script src="worldcup-arena.js?v=20260611r"></script>
+  <script src="worldcup-data.js?v=20260611p"></script>
+  <script src="worldcup-ui.js?v=20260611s"></script>
+</body>
+</html>

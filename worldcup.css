@@ -690,9 +690,25 @@ body[data-lang="zh"] .wc-board .matchup { letter-spacing: 0.02em; }
 }
 
 
-/* ===== 实际结果列 / 卡（与预测对照，2026-06-11 加）===== */
+/* ===== 赛果列 / 赛果横条 / 待定（与预测对照，2026-06-11）===== */
 .wc-amc-tbl th.ac, .wc-gp-tbl th.ac { color:#ffd166; font-weight:700; }
-.wc-amc-tbl td.ac, .wc-gp-tbl td.ac { background:rgba(255,209,102,.05); box-shadow:inset -1px 0 0 rgba(255,209,102,.20); }
-.wc-poolc.wc-poolc-real { border:1px solid rgba(255,209,102,.40); background:rgba(255,209,102,.04); }
-.wc-poolc-real .wc-poolc-name { color:#ffd166; }
+.wc-amc-tbl td.ac, .wc-gp-tbl td.ac { background:rgba(255,209,102,.06); box-shadow:inset -1px 0 0 rgba(255,209,102,.22); }
+
+/* 赛果横条（全局彩池上方的对照基准，不挤模型网格）*/
+.wc-pool-actual { display:flex; flex-wrap:wrap; align-items:center; gap:8px 20px; margin:12px 0 4px; padding:12px 16px;
+  border:1px solid rgba(255,209,102,.40); border-radius:10px; background:rgba(255,209,102,.05); }
+.wc-pool-actual .lbl { font-family:var(--wc-display); font-weight:700; letter-spacing:.08em; color:#ffd166; padding-right:6px; }
+.wc-pool-actual .it { display:inline-flex; align-items:center; gap:6px; }
+.wc-pool-actual .it > b { font-weight:600; opacity:.7; font-size:.82em; }
+.wc-pool-actual .it .vv { display:inline-flex; flex-wrap:wrap; gap:4px; align-items:center; }
+
+/* 待定 */
+.wc-tbd { font-size:.8em; opacity:.55; padding:2px 9px; border:1px dashed rgba(255,255,255,.22); border-radius:6px; white-space:nowrap; }
 .pk.pk-dim { opacity:.55; }
+
+/* 今日赛程：一天多场时局部滚动 */
+.wc-dtoday { max-height:300px; overflow-y:auto; padding-right:4px; }
+.wc-dtoday::-webkit-scrollbar { width:8px; }
+.wc-dtoday::-webkit-scrollbar-track { background:transparent; }
+.wc-dtoday::-webkit-scrollbar-thumb { background:rgba(255,255,255,.16); border-radius:4px; }
+.wc-dtoday::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,.30); }

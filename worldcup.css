@@ -790,3 +790,7 @@ section:focus, main:focus, .wc-section:focus, .wc-section:focus-visible,
 .wc-dash-card-wide { margin-top: 18px; }
 
 .wc-cards-meta { font-family: var(--wc-body); font-weight: 600; font-size: 12px; color: var(--wc-muted); margin-right: auto; padding-left: 10px; white-space: nowrap; }
+
+/* 专题简介去掉 DEMO 视频后:文字改单列(不再两栏),限宽保可读 */
+.wc-abstract { grid-template-columns: 1fr; }
+.wc-abstract > div { max-width: 880px; }

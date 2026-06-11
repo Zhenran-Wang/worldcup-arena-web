@@ -15,13 +15,25 @@
   ];
 
   var MARKETS = [
-    { key: "x2", zh: "胜平负", en: "1X2", pts: 2 },
-    { key: "hc", zh: "让球", en: "Handicap", pts: 4 },
-    { key: "ou", zh: "大小 2.5", en: "O/U 2.5", pts: 2 },
-    { key: "bt", zh: "双方进球", en: "BTTS", pts: 2 },
-    { key: "oe", zh: "进球单双", en: "Odd / Even", pts: 1 },
-    { key: "ht", zh: "半全场", en: "HT / FT", pts: 3 },
-    { key: "cs", zh: "正确比分", en: "Correct score", pts: 2 }
+    { key: "x2", zh: "全场胜平负", en: "1X2 (full-time)", pts: 2,
+      zhExp: "猜 90 分钟全场结果：主队赢＝主胜，打平＝平，客队赢＝客胜",
+      enExp: "Pick the full-time result: home win / draw / away win" },
+    { key: "hc", zh: "让球胜负", en: "Handicap", pts: 4 },  /* 名称与解释按本场盘口动态生成，见 ui 的 hcLabel / hcExplain */
+    { key: "ou", zh: "总进球大小 2.5", en: "Over/Under 2.5 goals", pts: 2,
+      zhExp: "猜两队全场总进球数：3 球及以上＝大，2 球及以下＝小",
+      enExp: "Total goals by both teams: 3 or more = Over, 2 or fewer = Under" },
+    { key: "bt", zh: "双方是否都进球", en: "Both teams to score", pts: 2,
+      zhExp: "都进＝两队各至少进 1 球；零封＝至少有一队 0 进球",
+      enExp: "Yes = both sides score at least once; No = at least one side fails to score" },
+    { key: "oe", zh: "总进球单双", en: "Total goals odd/even", pts: 1,
+      zhExp: "猜全场总进球数是单数还是双数（0 球算双数）",
+      enExp: "Is the total goal count odd or even? 0 counts as even" },
+    { key: "ht", zh: "半全场（半场/全场）", en: "HT / FT result", pts: 3,
+      zhExp: "一注同时猜「半场结果/全场结果」，如主/主＝半场主队领先且全场主队赢，两段都对才算中",
+      enExp: "Call the half-time AND full-time result (e.g. H/H) — both legs must be right" },
+    { key: "cs", zh: "正确比分", en: "Correct score", pts: 2,
+      zhExp: "直接猜最终比分，和赛果一模一样才算中",
+      enExp: "Predict the exact final score — must match exactly" }
   ];
   var GLOBAL = [
     { key: "champ", zh: "夺冠", en: "Champion", pts: 25, kind: "one" },

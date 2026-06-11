@@ -215,7 +215,11 @@ body.dark-theme.layout-pill .hero .btn:hover { transform: translateY(-2px); bord
 .wc-team .nm { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 16px; }
 .wc-team .flag { font-size: 22px; line-height: 1; }
 /* FIFA code badge (replaces emoji flags) */
-.fl { display: inline-flex; align-items: center; justify-content: center; font-family: var(--wc-display); font-weight: 700; font-size: 10px !important; letter-spacing: 0.04em; color: var(--wc-muted); background: rgba(255,255,255,0.05); border: 1px solid var(--wc-line-2); border-radius: 4px; padding: 1.5px 4px; line-height: 1.4; flex: none; }
+.fl { display: inline-flex; align-items: center; justify-content: center; line-height: 1; flex: none; }
+/* 国旗图片：高度跟随所在处字号（瑞士方旗、英格兰长旗都按原始比例显示） */
+.flx { height: 1.05em; width: auto; max-width: 2em; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,0.25); display: inline-block; vertical-align: -0.12em; background: #fff; }
+.flx-code { font-family: var(--wc-display); font-weight: 700; font-size: 10px; letter-spacing: 0.04em; color: var(--wc-muted); }
+.wc-dc-pg .flx { margin: 0 1.5px; }
 .wc-team .en { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--wc-dim); margin-left: 33px; margin-top: 1px; text-transform: uppercase; }
 .wc-pct { font-family: var(--wc-display); font-weight: 700; font-size: 20px; }
 .wc-bar { position: relative; height: 9px; min-width: 160px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
@@ -665,7 +669,9 @@ body[data-lang="zh"] .wc-board .matchup { letter-spacing: 0.02em; }
 .wc-amc-tbl thead th { background: var(--wc-bg3); font-family: var(--wc-display); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--wc-muted); white-space: nowrap; }
 .wc-amc-tbl th.mk, .wc-amc-tbl td.mk { text-align: left; padding-left: 16px; white-space: nowrap; }
 .wc-amc-tbl td.mk b { font-family: var(--wc-display); font-weight: 600; font-size: 13px; color: var(--wc-text); }
-.wc-amc-tbl td.mk .pt { font-family: var(--wc-body); font-weight: 700; font-size: 10px; color: var(--wc-accent); margin-left: 7px; }
+.wc-amc-tbl td.mk .pt { font-family: var(--wc-body); font-weight: 700; font-size: 10px; color: var(--wc-accent); margin-left: 7px; white-space: nowrap; }
+/* 玩法名下面紧跟的规则解释（一行小灰字，自动换行） */
+.wc-amc-tbl td.mk .mk-exp { display: block; margin-top: 4px; font-family: var(--wc-body); font-weight: 500; font-size: 10.5px; line-height: 1.55; color: var(--wc-dim); white-space: normal; }
 
 /* pick chips (tone-based) */
 .pk { display: inline-flex; align-items: center; gap: 3px; min-width: 34px; justify-content: center; font-family: var(--wc-display); font-weight: 700; font-size: 13px; padding: 5px 9px; border-radius: 7px; border: 1px solid transparent; white-space: nowrap; }
@@ -732,8 +738,8 @@ section:focus, main:focus, .wc-section:focus, .wc-section:focus-visible,
 
 
 /* 竞猜卡表格固定列宽——多张竞猜卡上下列对齐(原 table-layout:auto 列随内容变、对不齐) */
-.wc-amc-tbl { table-layout: fixed; min-width: 760px; }
-.wc-amc-tbl th.mk, .wc-amc-tbl td.mk { width: 172px; white-space: normal; }
+.wc-amc-tbl { table-layout: fixed; min-width: 800px; }
+.wc-amc-tbl th.mk, .wc-amc-tbl td.mk { width: 212px; white-space: normal; }
 .wc-amc-tbl th.ac, .wc-amc-tbl td.ac { width: 84px; }
 
 

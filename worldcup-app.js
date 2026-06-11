@@ -39,6 +39,27 @@
     "England":"ENG","Croatia":"CRO","Ghana":"GHA","Panama":"PAN"
   };
   function flag(en) { return FIFA[en] || "—"; }
+  // ---- 国旗：ISO 代码 -> flags/xx.svg（自托管 SVG；fimg 出图片，femo 出 emoji 给纯文本场景） ----
+  var ISO = {
+    "Mexico":"mx","South Africa":"za","South Korea":"kr","Czechia":"cz",
+    "Canada":"ca","Bosnia & Herzegovina":"ba","Qatar":"qa","Switzerland":"ch",
+    "Brazil":"br","Morocco":"ma","Haiti":"ht","Scotland":"gb-sct",
+    "USA":"us","Paraguay":"py","Australia":"au","Türkiye":"tr",
+    "Germany":"de","Curaçao":"cw","Côte d'Ivoire":"ci","Ecuador":"ec",
+    "Netherlands":"nl","Japan":"jp","Sweden":"se","Tunisia":"tn",
+    "Belgium":"be","Egypt":"eg","Iran":"ir","New Zealand":"nz",
+    "Spain":"es","Cape Verde":"cv","Saudi Arabia":"sa","Uruguay":"uy",
+    "France":"fr","Senegal":"sn","Iraq":"iq","Norway":"no",
+    "Argentina":"ar","Algeria":"dz","Austria":"at","Jordan":"jo",
+    "Portugal":"pt","DR Congo":"cd","Uzbekistan":"uz","Colombia":"co",
+    "England":"gb-eng","Croatia":"hr","Ghana":"gh","Panama":"pa"
+  };
+  function fimg(en) {
+    var c = ISO[en];
+    if (!c) return "<span class='flx-code'>" + (FIFA[en] || en) + "</span>";
+    return "<img class='flx' src='flags/" + c + ".svg' alt='" + (FIFA[en] || "") + "' title='" + (FIFA[en] || "") + "'>";
+  }
+  function femo(en) { return (T[en] && T[en][1]) || FIFA[en] || en; }
   function rate(en) { return (T[en] && T[en][2]) || 1780; }
   function nm(en) { return LANG === "en" ? en : zh(en); }
 
@@ -191,7 +212,7 @@
       var tierCls = r[3] === "holders" || r[3] === "fav" ? " holders" : "";
       return "<tr" + lead + ">" +
         "<td class='wc-rank'>" + (i + 1) + "</td>" +
-        "<td class='wc-team'><span class='nm'><span class='flag'>" + flag(r[0]) + "</span>" + name + "</span>" +
+        "<td class='wc-team'><span class='nm'><span class='flag'>" + fimg(r[0]) + "</span>" + name + "</span>" +
           "<span class='en'>" + sub + "</span></td>" +
         "<td class='wc-pct'>" + r[1].toFixed(1) + "%</td>" +
         "<td class='hide-sm'><div class='wc-bar'><i style='transform:scaleX(" + w + ")'></i></div></td>" +
@@ -203,7 +224,7 @@
 
   // expose for the second file
   window.__WC = {
-    T:T, zh:zh, flag:flag, rate:rate, nm:nm, ODDS:ODDS, FIX:FIX, DATE_EN:DATE_EN, DATE_ZH:DATE_ZH,
+    T:T, zh:zh, flag:flag, fimg:fimg, femo:femo, rate:rate, nm:nm, ODDS:ODDS, FIX:FIX, DATE_EN:DATE_EN, DATE_ZH:DATE_ZH,
     MODELS:MODELS, TYPES:TYPES, applyI18n:applyI18n, t:t, renderOdds:renderOdds,
     grp:grp, conf:conf, confLabel:confLabel, oddsOf:oddsOf, ratePct:ratePct, tierLabel:tierLabel,
     groups:groups, PHASES:PHASES,

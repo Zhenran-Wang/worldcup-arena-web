@@ -49,7 +49,7 @@
           detail: en ? ("Expected goals total ≈ " + total.toFixed(1) + ", leaning " + (total>=2.5?"over":"under") + " 2.5.")
                      : ("预期总进球约 " + total.toFixed(1) + " 个，倾向 " + (total>=2.5?"大":"小") + "球（2.5）。") };
       case "scorer":
-        return { headline: WC.flag(fav) + " " + WC.nm(fav), confidence: 40,
+        return { headline: WC.femo(fav) + " " + WC.nm(fav), confidence: 40,
           detail: en ? (WC.nm(fav) + "'s front line is most likely to break the deadlock; their main striker is the top scorer pick.")
                      : (WC.nm(fav) + " 的锋线最可能首开纪录，头号前锋是进球热门人选。") };
       case "tactics":
@@ -108,8 +108,8 @@
   function renderMatchSummary() {
     var host = el("wc-match-summary"); if (!host) return;
     host.innerHTML =
-      "<span class='fl'>" + WC.flag(state.a) + "</span><b>" + WC.nm(state.a) + "</b>" +
-      "<span class='mid'>vs</span><b>" + WC.nm(state.b) + "</b><span class='fl'>" + WC.flag(state.b) + "</span>";
+      "<span class='fl'>" + WC.fimg(state.a) + "</span><b>" + WC.nm(state.a) + "</b>" +
+      "<span class='mid'>vs</span><b>" + WC.nm(state.b) + "</b><span class='fl'>" + WC.fimg(state.b) + "</span>";
   }
   function renderTeamInfo() {
     var host = el("wc-teaminfo"); if (!host) return;
@@ -119,7 +119,7 @@
         ? "<div class='ti-odds'><span class='k'>" + WC.t("夺冠概率", "Title odds") + "</span><b>" + odds.toFixed(1) + "%</b></div>"
         : "<div class='ti-odds'><span class='k'>" + WC.t("档位", "Tier") + "</span><b class='tier'>" + WC.tierLabel(en) + "</b></div>";
       return "<div class='wc-tcard'>" +
-        "<div class='ti-top'><span class='fl'>" + WC.flag(en) + "</span><span class='nm'>" + WC.nm(en) + "</span></div>" +
+        "<div class='ti-top'><span class='fl'>" + WC.fimg(en) + "</span><span class='nm'>" + WC.nm(en) + "</span></div>" +
         "<div class='ti-meta'><span class='wc-tag2'>" + WC.t(WC.grp(en) + " 组", "Group " + WC.grp(en)) + "</span>" +
           "<span class='wc-tag2'>" + WC.confLabel(en) + "</span></div>" +
         "<div class='ti-rate'><span class='k'>" + WC.t("实力评级", "Rating") + "</span>" +
@@ -131,8 +131,8 @@
   // big numeric-style headline for these; everything else is text-scale
   var BIG_TYPES = { score: 1, result: 1, goals: 1, advance: 1 };
   function matchupHtml() {
-    return "<div class='matchup'><span class='fl'>" + WC.flag(state.a) + "</span>" + WC.nm(state.a) +
-      " <span style='color:var(--wc-accent)'>vs</span> " + WC.nm(state.b) + "<span class='fl'>" + WC.flag(state.b) + "</span></div>";
+    return "<div class='matchup'><span class='fl'>" + WC.fimg(state.a) + "</span>" + WC.nm(state.a) +
+      " <span style='color:var(--wc-accent)'>vs</span> " + WC.nm(state.b) + "<span class='fl'>" + WC.fimg(state.b) + "</span></div>";
   }
   function setResultPlaceholder() {
     var en = WC.getLang() === "en";
@@ -270,9 +270,9 @@
       "<div class='wc-m-time'>" + timeCell(f[6], dk, en) + "</div>" +
       "<span class='wc-m-grp'><b>" + (en ? "Grp " + f[1] : f[1] + "组") + "</b><i>" + (en ? "#" + no : "第" + no + "场") + "</i></span>" +
       "<div class='wc-m-teams'>" +
-        "<span class='t'><span class='fl'>" + WC.flag(f[2]) + "</span>" + WC.nm(f[2]) + "</span>" +
+        "<span class='t'><span class='fl'>" + WC.fimg(f[2]) + "</span>" + WC.nm(f[2]) + "</span>" +
         "<span class='vs'>vs</span>" +
-        "<span class='t r'>" + WC.nm(f[3]) + "<span class='fl'>" + WC.flag(f[3]) + "</span></span>" +
+        "<span class='t r'>" + WC.nm(f[3]) + "<span class='fl'>" + WC.fimg(f[3]) + "</span></span>" +
       "</div>" +
       "<span class='wc-m-venue'>" + (en ? f[5] : f[4]) + "</span>" +
     "</div>";
@@ -329,7 +329,7 @@
     host.innerHTML = Object.keys(G).map(function (k) {
       var rows = G[k].map(function (tm) {
         return "<div class='wc-grow'>" +
-          "<span class='fl'>" + WC.flag(tm) + "</span>" +
+          "<span class='fl'>" + WC.fimg(tm) + "</span>" +
           "<span class='nm'>" + WC.nm(tm) + "</span>" +
           "<span class='cf'>" + WC.confLabel(tm) + "</span>" +
         "</div>";
@@ -352,8 +352,8 @@
         return "<button type='button' class='wc-fixture" + sel + "' data-a=\"" + f[2] + "\" data-b=\"" + f[3] +
           "\" data-g='" + f[1] + "' data-vz=\"" + f[4] + "\" data-ve=\"" + f[5] + "\" data-d='" + d + "'>" +
           "<span class='grp'>" + f[1] + "</span>" +
-          "<span class='match'><span class='teams'>" + WC.flag(f[2]) + " " + WC.nm(f[2]) +
-            " <span class='v'>vs</span> " + WC.nm(f[3]) + " " + WC.flag(f[3]) + "</span>" +
+          "<span class='match'><span class='teams'>" + WC.fimg(f[2]) + " " + WC.nm(f[2]) +
+            " <span class='v'>vs</span> " + WC.nm(f[3]) + " " + WC.fimg(f[3]) + "</span>" +
             "<span class='venue'>" + (en ? f[5] : f[4]) + "</span></span>" +
           "<span class='kick'>" + (f[6] ? f[6] + " ET" : "—") + "</span>" +
         "</button>";
@@ -379,7 +379,7 @@
     var en = WC.getLang() === "en";
     var names = Object.keys(WC.T).sort(function (x, y) { return (en ? x : WC.zh(x)).localeCompare(en ? y : WC.zh(y)); });
     sel.innerHTML = names.map(function (k) {
-      return "<option value=\"" + k + "\"" + (k === picked ? " selected" : "") + ">" + WC.flag(k) + "  " + (en ? k : WC.zh(k)) + "</option>";
+      return "<option value=\"" + k + "\"" + (k === picked ? " selected" : "") + ">" + WC.femo(k) + "  " + (en ? k : WC.zh(k)) + "</option>";
     }).join("");
   }
 
@@ -441,9 +441,20 @@
     return "<span class='" + cls + "'>" + label + (settled ? "<i>" + (ok ? "✓" : "✗") + "</i>" : "") + "</span>";
   }
   function hcLabel(A, line, en) {
-    if (line === 0) return (en ? "Handicap · level" : "让球 · 平手");
-    var fav = line < 0 ? (en ? "Home" : "主") : (en ? "Away" : "客");
-    return (en ? "Handicap · " : "让球 · ") + fav + " -" + Math.abs(line);
+    if (line === 0) return (en ? "Handicap · level" : "让球胜负 · 平手盘");
+    var fav = line < 0 ? (en ? "Home" : "主队") : (en ? "Away" : "客队");
+    return en ? "Handicap · " + fav + " -" + Math.abs(line)
+              : "让球胜负 · " + fav + "让 " + Math.abs(line) + " 球";
+  }
+  function hcExplain(line, en) {
+    if (line === 0) return en ? "Level line: home win = Home, draw = Push, away win = Away"
+                              : "不让球直接比：主队赢＝主，正好打平＝走盘，客队赢＝客";
+    var n = Math.abs(line), half = n % 1 !== 0;
+    var favZh = line < 0 ? "主队" : "客队", favEn = line < 0 ? "the home side" : "the away side";
+    if (half) return en ? "Deduct " + n + " goals from " + favEn + " first — whichever side then leads wins the bet (a push can't happen)"
+                        : "先给" + favZh + "减 " + n + " 球再看结果：减完哪边领先就算哪边赢（不会出现走盘）";
+    return en ? "Deduct " + n + " goal" + (n > 1 ? "s" : "") + " from " + favEn + " first: home still ahead = Home, exactly level = Push, home behind = Away"
+              : "先给" + favZh + "减 " + n + " 球再看结果：减完主队仍领先＝主，正好打平＝走盘，主队落后＝客";
   }
   function actualMarketsFor(A, f, sc) {
     if (!sc) return null;
@@ -525,7 +536,7 @@
         var cons = "H"; if (counts.D > counts[cons]) cons = "D"; if (counts.A > counts[cons]) cons = "A";
         var ci = A.LBL.x2[cons];
         rows += "<div class='wc-dtoday-row' data-i='" + i + "'><span class='tm'>" + t + "</span>" +
-          "<div class='ln'><span class='mt'><span class='s l'><span class='fl'>" + WC.flag(f[2]) + "</span>" + WC.nm(f[2]) + "</span><i>vs</i><span class='s r'>" + WC.nm(f[3]) + "<span class='fl'>" + WC.flag(f[3]) + "</span></span></span>" +
+          "<div class='ln'><span class='mt'><span class='s l'><span class='fl'>" + WC.fimg(f[2]) + "</span>" + WC.nm(f[2]) + "</span><i>vs</i><span class='s r'>" + WC.nm(f[3]) + "<span class='fl'>" + WC.fimg(f[3]) + "</span></span></span>" +
           "<span class='pred pk pk-" + ci.t + "'>" + (en ? ci.en : ci.zh) + " " + counts[cons] + "/6</span></div></div>";
       });
     } else {
@@ -561,7 +572,7 @@
     var host = el("wc-dash-card-body"); if (!host) return;
     if (dashPage >= idxs.length) dashPage = 0;
     var pager = (dashPaged && idxs.length > 1)
-      ? "<div class='wc-dc-pager'>" + idxs.map(function (i, p) { var f = WC.FIX[i]; return "<button type='button' class='wc-dc-pg" + (p === dashPage ? " on" : "") + "' data-pg='" + p + "'><b>" + (p + 1) + "</b><span>" + WC.flag(f[2]) + "-" + WC.flag(f[3]) + "</span></button>"; }).join("") + "</div>"
+      ? "<div class='wc-dc-pager'>" + idxs.map(function (i, p) { var f = WC.FIX[i]; return "<button type='button' class='wc-dc-pg" + (p === dashPage ? " on" : "") + "' data-pg='" + p + "'><b>" + (p + 1) + "</b><span>" + WC.fimg(f[2]) + "-" + WC.fimg(f[3]) + "</span></button>"; }).join("") + "</div>"
       : "<span class='wc-dc-cnt'>" + idxs.length + (en ? " matches" : " 场比赛") + "</span>";
     var modes = "<div class='wc-dc-modes'>" +
       "<button type='button' class='wc-dc-mode" + (dashPaged ? " on" : "") + "' data-mode='page'>" + (en ? "Paged" : "逐场") + "</button>" +
@@ -610,7 +621,7 @@
   function teamTag(A, t, en, settled, hit) {
     var mk = settled ? "<i>" + (hit ? "✓" : "✗") + "</i>" : "";
     var cl = settled ? (hit ? " ok" : " no") : "";
-    return "<span class='tg" + cl + "'><span class='fl'>" + WC.flag(t) + "</span>" + WC.nm(t) + mk + "</span>";
+    return "<span class='tg" + cl + "'><span class='fl'>" + WC.fimg(t) + "</span>" + WC.nm(t) + mk + "</span>";
   }
   function renderPool(A, en) {
     var host = el("wc-pool"); if (!host) return;
@@ -685,7 +696,7 @@
         : "<span class='lk' title='" + (en ? "Not released yet" : "待产出") + "'>🔒</span>";
       return "<button type='button' class='wc-amrow" + (i === selMatch ? " sel" : "") + (rev ? "" : " locked") + "' data-i='" + i + "'>" +
         "<span class='no'>#" + (i + 1) + "</span>" +
-        "<span class='tt'><span class='s l'><span class='fl'>" + WC.flag(f[2]) + "</span>" + WC.nm(f[2]) + "</span><i>vs</i><span class='s r'>" + WC.nm(f[3]) + "<span class='fl'>" + WC.flag(f[3]) + "</span></span></span>" +
+        "<span class='tt'><span class='s l'><span class='fl'>" + WC.fimg(f[2]) + "</span>" + WC.nm(f[2]) + "</span><i>vs</i><span class='s r'>" + WC.nm(f[3]) + "<span class='fl'>" + WC.fimg(f[3]) + "</span></span></span>" +
         tail +
       "</button>";
     }).join("");
@@ -703,12 +714,12 @@
       "<div class='wc-amc-head'>" +
         "<div class='wc-amc-top'><span class='wc-amc-tag'>" + (en ? "Pick card · #" : "竞猜卡 · 第") + (i + 1) + (en ? "" : " 场") + "</span>" +
           "<span class='wc-amc-meta'>" + (en ? "Grp " + f[1] : f[1] + "组") + " · " + (en ? WC.DATE_EN[f[0]] : WC.DATE_ZH[f[0]]) + (sc ? " · " + (en ? "FT" : "完场") : "") + "</span></div>" +
-        "<div class='wc-amc-match'><span class='t'><span class='fl'>" + WC.flag(f[2]) + "</span>" + WC.nm(f[2]) + "</span>" +
+        "<div class='wc-amc-match'><span class='t'><span class='fl'>" + WC.fimg(f[2]) + "</span>" + WC.nm(f[2]) + "</span>" +
           "<span class='sc" + (sc ? " done" : "") + "'>" + (ftStr ? ftStr.replace(":", " : ") : (en ? "vs" : "vs")) + "</span>" +
-          "<span class='t r'>" + WC.nm(f[3]) + "<span class='fl'>" + WC.flag(f[3]) + "</span></span></div>" +
+          "<span class='t r'>" + WC.nm(f[3]) + "<span class='fl'>" + WC.fimg(f[3]) + "</span></span></div>" +
         "<div class='wc-amc-legend'>" +
-          "<span><b>" + (en ? "Home" : "主") + "</b> " + WC.flag(f[2]) + " " + WC.nm(f[2]) + "</span>" +
-          "<span><b>" + (en ? "Away" : "客") + "</b> " + WC.flag(f[3]) + " " + WC.nm(f[3]) + "</span>" +
+          "<span><b>" + (en ? "Home" : "主") + "</b> " + WC.fimg(f[2]) + " " + WC.nm(f[2]) + "</span>" +
+          "<span><b>" + (en ? "Away" : "客") + "</b> " + WC.fimg(f[3]) + " " + WC.nm(f[3]) + "</span>" +
           "<span><b>" + (en ? "Venue" : "场地") + "</b> " + (en ? f[5] : f[4]) + "</span>" +
           "<span><b>" + (en ? "Kickoff" : "开球") + "</b> " + f[6] + (en ? " ET" : " 美东 / " + etToBJ(f[6]).time + " 北京") + "</span>" +
         "</div>" +
@@ -718,11 +729,12 @@
         "<b>" + (en ? "Not released yet" : "本场预测待产出") + "</b>" +
         "<span>" + (en ? "Predictions are published day by day — this match opens on " + WC.DATE_EN[f[0]] + "." : "预测逐日产出，本场将在比赛日（" + WC.DATE_ZH[f[0]] + "）当天公布。") + "</span></div>";
     }
-    var thead = "<thead><tr><th class='mk'>" + (en ? "Market" : "市场") + "</th>" +
+    var thead = "<thead><tr><th class='mk'>" + (en ? "Market & rule" : "玩法 · 规则") + "</th>" +
       "<th class='ac'>" + (en ? "Result" : "赛果") + "</th>" +
       MODELS.map(function (m) { return "<th>" + m.name + "</th>"; }).join("") + "</tr></thead>";
     var rows = A.MARKETS.map(function (mk) {
       var lab = mk.key === "hc" ? hcLabel(A, line, en) : (en ? mk.en : mk.zh);
+      var exp = mk.key === "hc" ? hcExplain(line, en) : (en ? mk.enExp : mk.zhExp);
       var aval = actual ? actual[mk.key] : null;
       var settled = aval != null;
       var cells = MODELS.map(function (mo, mi) {
@@ -731,7 +743,8 @@
       }).join("");
       var acHtml = settled ? "<td class='ac'>" + chip(A, mk.key, aval, en, false, false) + "</td>"
                            : "<td class='ac'><span class='pk pk-dim'>" + (en ? "TBD" : "待定") + "</span></td>";
-      return "<tr><td class='mk'><b>" + lab + "</b><span class='pt'>+" + mk.pts + "</span></td>" + acHtml + cells + "</tr>";
+      return "<tr><td class='mk'><b>" + lab + "</b><span class='pt'>" + (en ? "hit +" : "猜中+") + mk.pts + "</span>" +
+        (exp ? "<span class='mk-exp'>" + exp + "</span>" : "") + "</td>" + acHtml + cells + "</tr>";
     }).join("");
     return head + "<div class='wc-amc-scroll'><table class='wc-amc-tbl'>" + thead + "<tbody>" + rows + "</tbody></table></div>";
   }

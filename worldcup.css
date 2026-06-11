@@ -216,8 +216,8 @@ body.dark-theme.layout-pill .hero .btn:hover { transform: translateY(-2px); bord
 .wc-team .flag { font-size: 22px; line-height: 1; }
 /* FIFA code badge (replaces emoji flags) */
 .fl { display: inline-flex; align-items: center; justify-content: center; line-height: 1; flex: none; }
-/* 国旗图片：高度跟随所在处字号（瑞士方旗、英格兰长旗都按原始比例显示） */
-.flx { height: 1.05em; width: auto; max-width: 2em; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,0.25); display: inline-block; vertical-align: -0.12em; background: #fff; }
+/* 国旗图片：统一标准尺寸（3:2 标准旗比例）+ object-fit:cover 裁切，所有国旗一般大 */
+.flx { width: 1.46em; height: 1.02em; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,0.25); display: inline-block; vertical-align: -0.12em; background: #fff; }
 .flx-code { font-family: var(--wc-display); font-weight: 700; font-size: 10px; letter-spacing: 0.04em; color: var(--wc-muted); }
 .wc-dc-pg .flx { margin: 0 1.5px; }
 .wc-team .en { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--wc-dim); margin-left: 33px; margin-top: 1px; text-transform: uppercase; }
@@ -597,7 +597,7 @@ body[data-lang="zh"] .wc-board .matchup { letter-spacing: 0.02em; }
 .wc-poolc-row { display: flex; flex-direction: column; gap: 3px; margin-bottom: 9px; min-width: 0; align-items: stretch; }
 .wc-poolc-row:last-child { margin-bottom: 0; }
 .wc-poolc-row .k { font-family: var(--wc-body); font-weight: 600; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--wc-dim); }
-.wc-poolc-row .v { display: flex; align-items: center; gap: 6px; min-width: 0; font-family: var(--wc-body); font-weight: 600; font-size: 13px; color: var(--wc-text); }
+.wc-poolc-row .v { display: flex; align-items: center; gap: 6px; min-width: 0; font-family: var(--wc-body); font-weight: 600; font-size: 13px; color: var(--wc-text); padding-left: 0; }
 .wc-poolc-row .v.wrap { flex-wrap: wrap; gap: 5px; width: 100%; max-width: 100%; min-width: 0; }
 .wc-poolc-row .v .fl { font-size: 15px; }
 .tg { display: inline-flex; align-items: center; gap: 5px; font-family: var(--wc-body); font-weight: 600; font-size: 12.5px; color: var(--wc-text); background: var(--wc-bg3); border: 1px solid var(--wc-line-2); border-radius: 7px; padding: 3px 8px; white-space: nowrap; flex: 0 0 auto; }

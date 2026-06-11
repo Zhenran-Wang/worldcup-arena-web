@@ -2,7 +2,7 @@
 
 # World Cup 2026 · Multi-LLM Prediction Arena — Web
 
-> 🌐 **Live site:** https://llm-worldcup-arena.github.io/worldcup-arena-web/
+> 🌐 **Live site:** https://llm-worldcup-arena.github.io/
 > 🧩 **Code & data (benchmark):** https://github.com/llm-worldcup-arena/worldcup-arena-codebase
 
 The front-end for the **2026 World Cup multi-LLM prediction benchmark**. Six **flagship, state-of-the-art** models (Claude / GPT / Gemini / Kimi / GLM / Seed) fill out a football-lottery pick card for every match. This site shows their picks, the tournament outright pool, and a **live leaderboard** that settles against real results.

@@ -2,7 +2,7 @@
 
 # 世界杯 2026 · 多模型预测擂台 — 前端
 
-> 🌐 **在线演示:** https://llm-worldcup-arena.github.io/worldcup-arena-web/
+> 🌐 **在线演示:** https://llm-worldcup-arena.github.io/
 > 🧩 **代码与数据(基准):** https://github.com/llm-worldcup-arena/worldcup-arena-codebase
 
 **2026 世界杯多模型预测基准**的前端展示页。6 家**最新旗舰、SOTA** 大模型(Claude / GPT / Gemini / Kimi / GLM / Seed)给每场比赛填一张足球竞猜卡;本站展示它们的预测、全局彩池,以及一个**按真实赛果实时结算的积分榜**。

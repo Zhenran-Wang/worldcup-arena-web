@@ -512,7 +512,9 @@
     var tHost = el("wc-dash-today"), tTtl = el("wc-dash-today-ttl");
     if (!tHost) return;
     var days = allDays();
-    var now = new Date(); var todayNum = (now.getFullYear() === 2026 ? (now.getMonth() + 1) * 100 + now.getDate() : 611);
+    // 赛程日期键按【美东时间】编;"今日"也必须按美东算 —— 否则东亚已过午夜时,按浏览器本地(如北京6/12凌晨)会提前跳到次日、把当天还没开球的揭幕战(美东仍6/11)当成昨天藏掉。
+    var etd = new Date().toLocaleDateString("en-US", { timeZone: "America/New_York" }).split("/");  // "M/D/YYYY"
+    var todayNum = (+etd[2] === 2026 ? (+etd[0]) * 100 + (+etd[1]) : 611);
     var pickDay = null, isToday = false;
     for (var k = 0; k < days.length; k++) {
       var P = dateParts(days[k].dk); var num = P.mo * 100 + P.dd;
